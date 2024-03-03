@@ -15,12 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
+    <ClCompile Include="VM\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common.h">
+    <ClInclude Include="VM\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VM\chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
