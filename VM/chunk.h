@@ -23,6 +23,7 @@ typedef struct {
 
 
 void initChunk(Chunk* chunk);
+void freeChunk(Chunk* chunk);
 void writeChunk(Chunk* chunk, uint8_t byte);
 
 #endif	// !Eaze_chunk_h

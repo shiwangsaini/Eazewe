@@ -24,6 +24,9 @@
     <ClCompile Include="VM\memory.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="VM\debug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VM\common.h">
@@ -33,6 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VM\memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VM\debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

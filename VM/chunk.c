@@ -12,6 +12,11 @@ void initChunk(Chunk* chunk) {
 	chunk->code = NULL;
 } // Empty
 
+void freeChunk(Chunk* chunk) {
+	FREE_ARRAY(uint8_t, chunk->code, chunk->capacity);
+	initChunk(chunk);
+}
+
 // append or add byte at the end of chunk
 void writeChunk(Chunk* chunk, uint8_t byte) {
 	if (chunk->capacity < chunk->count + 1) {
