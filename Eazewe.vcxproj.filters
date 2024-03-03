@@ -18,12 +18,21 @@
     <ClCompile Include="VM\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="VM\chunk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VM\memory.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VM\common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VM\chunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VM\memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -127,9 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="VM\chunk.c" />
     <ClCompile Include="VM\main.c" />
+    <ClCompile Include="VM\memory.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="VM\memory.h" />
     <ClInclude Include="VM\chunk.h" />
     <ClInclude Include="VM\common.h" />
   </ItemGroup>
