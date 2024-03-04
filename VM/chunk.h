@@ -3,8 +3,8 @@
 #pragma once
 
 
-#ifndef Eaze_chunk_h
-#define Eaze_chunk_h
+#ifndef EAZE_CHUNK_H
+#define EAZE_CHUNK_H
 
 #include "common.h"
 

@@ -1,8 +1,8 @@
 // common.h
 #pragma once
 
-#ifndef Eaze_common_h
-#define Eaze_common_h
+#ifndef EAZE_COMMON_H
+#define EAZE_COMMON_H
 
 #include <stdbool.h>
 #include <stdint.h>

@@ -41,5 +41,8 @@
     <ClInclude Include="VM\debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VM\value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 // debug.h
 #pragma once
 
-#ifndef Eaze_debug_h
-#define Eaze_debug_h
+#ifndef EAZE_DEBUG_H
+#define EAZE_DEBUG_H
 
 #include "chunk.h"
 
