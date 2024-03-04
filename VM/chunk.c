@@ -32,7 +32,7 @@ void writeChunk(Chunk* chunk, uint8_t byte) {
 }
 
 // add value to chunk
-int addConstant(Chunk* chunk, Value value)
+unsigned int addConstant(Chunk* chunk, Value value)
 {
 	writeValueArray(&chunk->constant, value);
 	return chunk->constant.count - 1;

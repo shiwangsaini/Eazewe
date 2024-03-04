@@ -12,14 +12,8 @@ void disassembleChunk(Chunk* chunk, const char* name) {
     }
 }
 
-// Print simple instruction
-static int simpleInstruction(const char* name, int offset) {
-    printf("debug -- %04d %s\n", offset, name);
-    return offset + 1;
-}
-
 // Disassemble instruction at given offset
-int disassembleInstruction(Chunk* chunk, int offset) {
+unsigned int disassembleInstruction(Chunk* chunk, int offset) {
     printf("debug -- %04d ", offset);
 
     uint8_t instruction = chunk->code[offset];
@@ -30,5 +24,11 @@ int disassembleInstruction(Chunk* chunk, int offset) {
         printf("debug -- Unknown Op_code %d\n", instruction);
         return offset + 1;
     }
+
+// Print simple instruction
+static int simpleInstruction(const char* name, int offset) {
+    printf("debug -- %04d %s\n", offset, name);
+    return offset + 1;
+}
 }
 

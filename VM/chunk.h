@@ -11,7 +11,8 @@
 
 // Operation code
 typedef enum {
-	OP_RETURN,
+	OP_CONSTANT,	// value index tell where the value is
+	OP_RETURN,		// return op
 } Op_Code;	// defined as Op_code
 
 // dynamic array
@@ -27,6 +28,6 @@ typedef struct {
 void initChunk(Chunk* chunk);
 void freeChunk(Chunk* chunk);
 void writeChunk(Chunk* chunk, uint8_t byte);
-int addConstant(Chunk* chunk, Value value);
+unsigned int addConstant(Chunk* chunk, Value value);
 
 #endif	// !Eaze_chunk_h
