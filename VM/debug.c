@@ -30,6 +30,13 @@ int constantInstruction(const char* name, Chunk* chunk, int offset) {
 // Disassemble instruction at given offset
 unsigned int disassembleInstruction(Chunk* chunk, int offset) {
     printf("debug -- %04d ", offset);
+    if ((offset > 0) && 
+        (chunk->lines[offset] == chunk->lines[offset - 1])) {
+        printf("    | ");
+    }
+    else {
+        printf("%4d ", chunk->lines[offset]);
+    }
 
     uint8_t instruction = chunk->code[offset];
     switch (instruction) {
