@@ -9,5 +9,6 @@
 void disassembleChunk(Chunk* chunk, const char* name);
 unsigned int disassembleInstruction(Chunk* chunk, int offset);
 static int simpleInstruction(const char* name, int offset);
+static int constantInstruction(const char* name,Chunk* chunk ,int offset);
 
 #endif // !Eaze_debug_h
