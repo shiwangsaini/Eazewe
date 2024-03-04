@@ -16,7 +16,7 @@ typedef struct {
 	unsigned int capacity;
 	unsigned int count;
 	Value* values;
-} ValueArray;
+} ValueArray;	//defined as ValueArray
 
 void initValueArray(ValueArray* array);
 void writeValueArray(ValueArray* array, Value value);

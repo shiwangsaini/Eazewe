@@ -7,6 +7,7 @@
 #define EAZE_CHUNK_H
 
 #include "common.h"
+#include "value.h"
 
 // Operation code
 typedef enum {
@@ -18,6 +19,7 @@ typedef struct {
 	unsigned int count;
 	unsigned int capacity;
 
+	ValueArray constant;
 	uint8_t* code;
 } Chunk;	// defined as Chunk
 
