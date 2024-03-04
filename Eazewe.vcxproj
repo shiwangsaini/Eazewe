@@ -131,6 +131,7 @@
     <ClCompile Include="VM\debug.c" />
     <ClCompile Include="VM\main.c" />
     <ClCompile Include="VM\memory.c" />
+    <ClCompile Include="VM\value.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VM\value.h" />
