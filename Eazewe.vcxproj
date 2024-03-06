@@ -127,18 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="VM\chunk.c" />
-    <ClCompile Include="VM\debug.c" />
-    <ClCompile Include="VM\main.c" />
-    <ClCompile Include="VM\memory.c" />
-    <ClCompile Include="VM\value.c" />
+    <ClCompile Include="Bytecode\chunk.c" />
+    <ClCompile Include="Bytecode\debug.c" />
+    <ClCompile Include="Bytecode\main.c" />
+    <ClCompile Include="Bytecode\memory.c" />
+    <ClCompile Include="Bytecode\value.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VM\value.h" />
-    <ClInclude Include="VM\debug.h" />
-    <ClInclude Include="VM\memory.h" />
-    <ClInclude Include="VM\chunk.h" />
-    <ClInclude Include="VM\common.h" />
+    <ClInclude Include="Bytecode\value.h" />
+    <ClInclude Include="Bytecode\debug.h" />
+    <ClInclude Include="Bytecode\memory.h" />
+    <ClInclude Include="Bytecode\chunk.h" />
+    <ClInclude Include="Bytecode\common.h" />
+    <ClInclude Include="VM\vm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

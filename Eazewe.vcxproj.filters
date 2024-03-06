@@ -15,36 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="VM\main.c">
+    <ClCompile Include="Bytecode\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VM\chunk.c">
+    <ClCompile Include="Bytecode\chunk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VM\memory.c">
+    <ClCompile Include="Bytecode\memory.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VM\debug.c">
+    <ClCompile Include="Bytecode\debug.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VM\value.c">
+    <ClCompile Include="Bytecode\value.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VM\common.h">
+    <ClInclude Include="Bytecode\common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VM\chunk.h">
+    <ClInclude Include="Bytecode\chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VM\memory.h">
+    <ClInclude Include="Bytecode\memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VM\debug.h">
+    <ClInclude Include="Bytecode\debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VM\value.h">
+    <ClInclude Include="Bytecode\value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VM\vm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

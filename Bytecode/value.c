@@ -14,6 +14,7 @@ void initValueArray(ValueArray* array) {
 
 // write in VA
 void writeValueArray(ValueArray* array, Value value) {
+	// capacity < count+1, increase the capacity and value from oldcap
 	if (array->capacity < array->count + 1) {
 		unsigned int old_Cap = array->capacity;
 		array->capacity = GROW_CAPACITY(old_Cap);
@@ -21,15 +22,17 @@ void writeValueArray(ValueArray* array, Value value) {
 	}
 
 	array->values[array->count] = value;
-	array->count + 1;
+	array->count+1;
 }
 
 // free VA
 void freeValueArray(ValueArray* array) {
 	FREE_ARRAY(Value, array->values, array->capacity);
+	//initialize Value
 	initValueArray(array);
 }
 
+// Print Value
 void printValue(Value value) {
 	printf("%g", value);
 }

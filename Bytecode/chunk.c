@@ -14,6 +14,7 @@ void initChunk(Chunk* chunk) {
 	initValueArray(&chunk->constant);
 } // Empty
 
+// free chunk after giving it to new expanded chunk
 void freeChunk(Chunk* chunk) {
 	FREE_ARRAY(uint8_t, chunk->code, chunk->capacity);
 	FREE_ARRAY(unsigned int, chunk->lines, chunk->capacity);
