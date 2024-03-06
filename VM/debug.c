@@ -6,16 +6,17 @@
 
 // machine code to textual list
 void disassembleChunk(Chunk* chunk, const char* name) {
-    printf("debug -- == %s ==\n", name);
+    printf("== %s ==\n", name);
 
-    for (unsigned int offset = 0; offset < chunk->count;) {
+    for (int offset = 0; offset < chunk->count;) {
         offset = disassembleInstruction(chunk, offset);
     }
 }
 
 // Disassemble instruction at given offset
 unsigned int disassembleInstruction(Chunk* chunk, int offset) {
-    printf("debug -- %04u ", offset);
+
+    printf("%04u ", offset);
     if ((offset > 0) && (chunk->lines[offset] == chunk->lines[offset - 1])) {
         printf("    | ");
     }
@@ -32,20 +33,20 @@ unsigned int disassembleInstruction(Chunk* chunk, int offset) {
         return simpleInstruction("OP_RETURN__ ", offset);
 
     default:
-        printf("debug -- Unknown Op_code %d\n", instruction);
+        printf("Unknown Op_code %d\n", instruction);
         return offset + 1;
     }
 }
 
 // Print simple instruction
 static int simpleInstruction(const char* name, int offset) {
-    printf("debug -- %04d %s\n", offset, name);
+    printf("%s\n", name);
     return offset + 1;
 }
 
 //
 int constantInstruction(const char* name, Chunk* chunk, int offset) {
-    uint8_t constant = chunk->code[offset + 1];
+    uint8_t constant = chunk->code[offset];
     printf("%-16s %04d \t &Value = '", name, constant);
     printValue(chunk->constant.values[constant]);
     printf("'\n");
