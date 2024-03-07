@@ -8,13 +8,13 @@
 void disassembleChunk(Chunk* chunk, const char* name) {
     printf("== %s ==\n", name);
 
-    for (unsigned int offset = 0; offset < chunk->count;) {
+    for (int offset = 0; offset < chunk->count;) {
         offset = disassembleInstruction(chunk, offset);
     }
 }
 
-// Disassemble instruction at given offset
-unsigned int disassembleInstruction(Chunk* chunk, int offset) {
+// Disassemble instruction at given offset and print'em
+ int disassembleInstruction(Chunk* chunk, int offset) {
 
     printf("%04u ", offset);
     if ((offset > 0) && (chunk->lines[offset] == chunk->lines[offset - 1])) {       //  ?
@@ -28,6 +28,9 @@ unsigned int disassembleInstruction(Chunk* chunk, int offset) {
     switch (instruction) {
     case OP_CONSTANT:
         return constantInstruction("OP_CONSTANT__ ", chunk, offset);
+
+    case OP_NEGATE:
+        return simpleInstruction("OP_NEGATE__", offset);
 
     case OP_RETURN:
         return simpleInstruction("OP_RETURN__ ", offset);

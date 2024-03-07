@@ -12,23 +12,24 @@
 // Operation code
 typedef enum {
 	OP_CONSTANT,	// value index tell where the value is
+	OP_NEGATE,		// make value - negative
 	OP_RETURN,		// return op
 } Op_Code;	// defined as Op_code
 
 // dynamic array
 typedef struct {
-	unsigned int count;
-	unsigned int capacity;
+	int count;
+	int capacity;
 
 	uint8_t* code;
-	unsigned int* lines;
+	int* lines;
 	ValueArray constant;
 } Chunk;	// defined as Chunk
 
 
 void initChunk(Chunk* chunk);
 void freeChunk(Chunk* chunk);
-void writeChunk(Chunk* chunk, uint8_t byte, unsigned int line);
-unsigned int addConstant(Chunk* chunk, Value value);
+void writeChunk(Chunk* chunk, uint8_t byte, int line);
+int addConstant(Chunk* chunk, Value value);
 
 #endif	// !Eaze_chunk_h

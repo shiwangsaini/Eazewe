@@ -14,9 +14,9 @@ void initValueArray(ValueArray* array) {
 
 // write in VA
 void writeValueArray(ValueArray* array, Value value) {
-	// capacity < count+1, increase the capacity and value from oldcap
+	// capacity < count+1, increase the capacity and value from old cap
 	if (array->capacity < array->count + 1) {
-		unsigned int old_Cap = array->capacity;
+		 int old_Cap = array->capacity;
 		array->capacity = GROW_CAPACITY(old_Cap);
 		array->values = GROW_ARRAY(Value, array->values, old_Cap, array->capacity);
 	}

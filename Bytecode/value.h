@@ -13,8 +13,8 @@ typedef double Value;
 
 // dynamic array of value
 typedef struct {
-	unsigned int capacity;
-	unsigned int count;
+	int capacity;
+	int count;
 	Value* values;
 } ValueArray;	//defined as ValueArray
 
