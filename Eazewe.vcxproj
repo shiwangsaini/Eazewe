@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Bytecode;$(SolutionDir)Eaze_VM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +133,7 @@
     <ClCompile Include="Bytecode\main.c" />
     <ClCompile Include="Bytecode\memory.c" />
     <ClCompile Include="Bytecode\value.c" />
+    <ClCompile Include="Eaze_VM\vm.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bytecode\value.h" />
@@ -139,7 +141,7 @@
     <ClInclude Include="Bytecode\memory.h" />
     <ClInclude Include="Bytecode\chunk.h" />
     <ClInclude Include="Bytecode\common.h" />
-    <ClInclude Include="VM\vm.h" />
+    <ClInclude Include="Eaze_VM\vm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

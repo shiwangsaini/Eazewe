@@ -30,6 +30,9 @@
     <ClCompile Include="Bytecode\value.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Eaze_VM\vm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bytecode\common.h">
@@ -47,7 +50,7 @@
     <ClInclude Include="Bytecode\value.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VM\vm.h">
+    <ClInclude Include="Eaze_VM\vm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

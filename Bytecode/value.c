@@ -22,7 +22,7 @@ void writeValueArray(ValueArray* array, Value value) {
 	}
 
 	array->values[array->count] = value;
-	array->count+1;
+	++array->count;
 }
 
 // free VA
