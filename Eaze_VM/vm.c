@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "common.h"
+#include "debug.h"
 #include "vm.h"
 
 // VM struct obj
@@ -10,6 +11,7 @@ VM vm;
 
 // initialize VM
 void initVM() {
+	resetStack();
 	printf("initialized vm\n");
 }
 
@@ -37,7 +39,13 @@ InterpretResult run() {
 
 	// give response
 	for (;;) {
-		uint8_t instruction;
+
+// if defined disassemble instruction
+#ifdef DEBUG_TRACE_EXECUTION
+		disassembleInstruction(vm.chunk, (int)(vm.ip - vm.chunk->code));
+#endif // DEBUG_TRACE_EXECUTION
+
+		uint8_t instruction = NULL;
 		switch (instruction = READ_BYTE())
 		{
 		case OP_CONSTANT: {
@@ -59,4 +67,21 @@ InterpretResult run() {
 // undefined macros
 #undef READ_BYTE
 #undef READ_CONSTANT
+}
+
+// helper func reset the stack
+void resetStack() {
+	vm.stackTop = vm.stack;
+}
+
+// push new values to stack
+void push(Value value) {
+	*vm.stackTop = value;	// set value to provided address
+	vm.stackTop++;			// then take one step forward
+}
+
+// pop recent value in stack
+Value pop() {
+	vm.stackTop--;			// move pointer back
+	return *vm.stackTop;	// then return pointer to new recent stack top
 }
