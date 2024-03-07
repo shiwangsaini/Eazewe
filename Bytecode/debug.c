@@ -28,13 +28,18 @@ void disassembleChunk(Chunk* chunk, const char* name) {
     switch (instruction) {
     case OP_CONSTANT:
         return constantInstruction("OP_CONSTANT__ ", chunk, offset);
-
+    case OP_ADD:
+        return simpleInstruction("OP_ADD__", offset);
+    case OP_SUBTRACT:
+        return simpleInstruction("OP_SUBTRACT__", offset);
+    case OP_MULTIPY:
+        return simpleInstruction("OP_MULTIPY__", offset);
+    case OP_DIVIDE:
+        return simpleInstruction("OP_DIVIDE__", offset);
     case OP_NEGATE:
         return simpleInstruction("OP_NEGATE__", offset);
-
     case OP_RETURN:
         return simpleInstruction("OP_RETURN__ ", offset);
-
     default:
         printf("Unknown Op_code %d\n", instruction);
         return offset + 1;

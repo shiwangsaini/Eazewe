@@ -24,7 +24,7 @@ void freeChunk(Chunk* chunk) {
 
 // append or add byte at the end of chunk
 void writeChunk(Chunk* chunk, uint8_t byte, int line) {
-	if(chunk->count == 0 || chunk->lines[chunk->count - 1] != line) {
+	if (chunk->count == 0 || chunk->lines[chunk->count - 1] == line){
 		if (chunk->capacity < chunk->count + 1) {
 			int old_capacity = chunk->capacity;
 			chunk->capacity = GROW_CAPACITY(old_capacity);
