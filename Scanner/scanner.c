@@ -29,6 +29,8 @@ Token scanToken() {
 	if (isAtEnd()) makeToken(TOKEN_EOF);
 
 	char c = advance();
+
+	if (isAlpha(c)) return identifier();
 	if (isDigit(c)) return number();
 
 	switch (c) {
@@ -65,6 +67,13 @@ static bool isAtEnd() {
 // check if c is a digit
 static bool isDigit(char c) {
 	return c >= '0' && c <= '9';
+}
+
+// check if c is alphabet
+bool isAlpha(char c) {
+	return (c >= 'A' && c <= 'Z') || 
+		   (c >= 'a' && c <= 'z') || 
+			c == '_';
 }
 
 // check the next expected char
@@ -109,6 +118,74 @@ static Token string() {
 	// the closing quote
 	advance();
 	return makeToken(TOKEN_STRING);
+}
+
+// Tokenize numbers
+static Token number() {
+	while (isDigit(peek())) advance();
+
+	// look for fractional part
+	if (peek() == '.' && isDigit(peekNext())) {
+		// consume the "."
+		advance();
+		while (isDigit(peek())) advance();
+	}
+
+	return makeToken(TOKEN_NUMBER);
+}
+
+// generate Identifier Token to variables
+static Token identifier() {
+	while (isAlpha(peek()) || isDigit(peek())) advance();
+	return makeToken(identifierType());
+}
+
+// tells if ther is a keyword or identifier
+static TokenType identifierType() {
+	switch (scanner.start[0]) {
+	case 'a': return checkKeyword(1, 2, "nd", TOKEN_AND);
+	case 'c': return checkKeyword(1, 4, "lass", TOKEN_CLASS);
+	case 'e': return checkKeyword(1, 3, "else", TOKEN_ELSE);
+	case 'f':
+		if (scanner.current - scanner.start > 1) {
+			switch (scanner.start[1]) {
+			case 'a': return checkKeyword(2, 3, "lse", TOKEN_FALSE);
+			case 'o': return checkKeyword(2, 1, "r", TOKEN_FOR);
+			case 'r': return checkKeyword(2, 1, "n", TOKEN_FUN);
+			}
+		}
+		break;
+	case 'i': return checkKeyword(1, 1, "f", TOKEN_IF);
+	case 'n': return checkKeyword(1, 2, "il", TOKEN_NIL);
+	case 'o': return checkKeyword(1, 1, "r", TOKEN_OR);
+	case 'p': return checkKeyword(1, 4, "rint", TOKEN_PRINT);
+	case 'r': return checkKeyword(1, 5, "eturn", TOKEN_RETURN);
+	case 's': return checkKeyword(1, 4, "uper", TOKEN_SUPER);
+	case 't': 
+		if (scanner.current - scanner.start > 1) {
+			switch (scanner.start[1])
+			{
+			case 'h': return checkKyword(2, 2, "is", TOKEN_THIS);
+			case 'r': return checkKyword(2, 2, "ue", TOKEN_TRUE);
+			}
+		}
+		break;
+	case 'v': return checkKeyword(1, 2, "ar", TOKEN_VAR);
+	case 'w': return checkKeyword(1, 4, "hile", TOKEN_WHILE);
+	}
+
+	return TOKEN_IDENTIFIER;
+}
+
+// check if rest of the keyword is there
+static TokenType checkKeyword(int start, int length,
+							  const char* rest, TokenType type) {
+	if (scanner.current - scanner.start == start + length &&
+		memcmp(scanner.start + start, rest, length) == 0) {
+		return type;	// return what keyword is it
+	}
+
+	return TOKEN_IDENTIFIER;
 }
 
 // consume current char and return it
