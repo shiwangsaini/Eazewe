@@ -1,0 +1,2 @@
+// compile
+#pragma once

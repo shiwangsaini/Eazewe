@@ -4,6 +4,7 @@
 
 #include "common.h"
 #include "debug.h"
+#include "compiler.h"
 #include "vm.h"
 
 // VM struct obj
@@ -21,12 +22,11 @@ void freeVM() {
 }
 
 // store executed chunks in VM
-InterpretResult interpret(Chunk* chunk) {
-	vm.chunk = chunk;
-	vm.ip = vm.chunk->code;
+InterpretResult interpret(const char* source) {
+	compile(source);
 
 	// internal helper runs the bytecode instruction
-	return run();
+	return INTERPRET_OK;
 }
 
 // keep track of next instruction and provide appropiate responds to them

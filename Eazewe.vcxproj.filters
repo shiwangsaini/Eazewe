@@ -53,5 +53,8 @@
     <ClInclude Include="Eaze_VM\vm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Compiler\compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

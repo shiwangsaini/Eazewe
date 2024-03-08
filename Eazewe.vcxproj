@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Bytecode;$(SolutionDir)Eaze_VM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Bytecode;$(SolutionDir)Eaze_VM;$(SolutionDir)Compiler;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,6 +141,7 @@
     <ClInclude Include="Bytecode\memory.h" />
     <ClInclude Include="Bytecode\chunk.h" />
     <ClInclude Include="Bytecode\common.h" />
+    <ClInclude Include="Compiler\compiler.h" />
     <ClInclude Include="Eaze_VM\vm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
