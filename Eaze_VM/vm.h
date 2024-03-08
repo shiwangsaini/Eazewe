@@ -1,8 +1,8 @@
 // vm.h
 #pragma once
 
-#ifndef EAZE_VM_H
-#define EAZE_VM_H
+#ifndef Eaze_vm_h
+#define Eaze_vm_h
 
 #include "chunk.h"
 #include "value.h"
@@ -42,4 +42,4 @@ static void resetStack();
 void push(Value value);
 Value pop();
 
-#endif // !EAZE_VM_H
+#endif // !Eaze_vm_h

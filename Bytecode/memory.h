@@ -2,8 +2,8 @@
 // does low-level operation such as manipulating array size etc.
 #pragma once
 
-#ifndef EAZE_MEMORY_H
-#define EAZE_MEMORY_H
+#ifndef Eaze_memory_h
+#define Eaze_memory_h
 
 #include "common.h"
 

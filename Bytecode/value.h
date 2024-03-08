@@ -3,8 +3,8 @@
 
 #pragma once
 
-#ifndef EAZE_VALUE_H
-#define EAZE_VALUE_H
+#ifndef Eaze_value_h
+#define Eaze_value_h
 
 #include "common.h"
 
@@ -23,4 +23,4 @@ void writeValueArray(ValueArray* array, Value value);
 void freeValueArray(ValueArray* array);
 void printValue(Value value);
 
-#endif // !EAZE_VALUE_H
+#endif // !Eaze_value_h

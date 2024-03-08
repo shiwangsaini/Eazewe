@@ -2,8 +2,8 @@
 // it has some common dependencies
 #pragma once
 
-#ifndef EAZE_COMMON_H
-#define EAZE_COMMON_H
+#ifndef Eaze_common_h
+#define Eaze_common_h
 
 #include <stdbool.h>
 #include <stdint.h>
