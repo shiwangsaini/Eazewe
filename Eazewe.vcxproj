@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Bytecode;$(SolutionDir)Eaze_VM;$(SolutionDir)Compiler;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Bytecode;$(SolutionDir)Eaze_VM;$(SolutionDir)Compiler;$(SolutionDir)Scanner;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,7 +133,9 @@
     <ClCompile Include="Bytecode\main.c" />
     <ClCompile Include="Bytecode\memory.c" />
     <ClCompile Include="Bytecode\value.c" />
+    <ClCompile Include="Compiler\compiler.c" />
     <ClCompile Include="Eaze_VM\vm.c" />
+    <ClCompile Include="Scanner\scanner.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bytecode\value.h" />
@@ -143,6 +145,7 @@
     <ClInclude Include="Bytecode\common.h" />
     <ClInclude Include="Compiler\compiler.h" />
     <ClInclude Include="Eaze_VM\vm.h" />
+    <ClInclude Include="Scanner\scanner.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,9 @@
 // compile
 #pragma once
 
-#ifndef 1
+#ifndef Eaze_compiler_h
+#define Eaze_compiler_h
 
-#endif // !1
+void compile(const char* source);
+
+#endif // !Eaze_compiler_h
