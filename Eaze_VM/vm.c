@@ -103,7 +103,7 @@ InterpretResult run() {
 }
 
 // helper func reset the stack
-void resetStack() {
+static void resetStack() {
 	vm.stackTop = vm.stack;
 }
 

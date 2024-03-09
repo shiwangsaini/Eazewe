@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 #include "common.h"
-#include "compiler.h"
 #include "scanner.h"
+#include "compiler.h"
 
 #ifdef DEBUG_PRINT_CODE
 #include "debug.h"
@@ -189,7 +189,7 @@ static void grouping() {
 }
 
 //store a pointer at the TOKEN_NUMBER index in the array
-static void number(bool can_Assign) {
+static void number() {
 	// str to double
 	double value = strtod(parser.previous.start, NULL);
 	emitConstant(value);
