@@ -4,7 +4,7 @@
 #ifndef Eaze_scanner_h
 #define Eaze_scanner_h
 
-//
+// Eaze TokenType
 typedef enum {
 	// Single-char tokens
 	TOKEN_LEFT_PAREN,	// "("
@@ -56,7 +56,7 @@ typedef enum {
 	TOKEN_EOF
 } TokenType;
 
-//
+// Tokenizer struct
 typedef struct {
 	TokenType type;
 	const char* start;
@@ -76,11 +76,9 @@ static bool match(char expected);
 static Token makeToken(TokenType type);
 static Token errorToken(const char* message);
 static Token string();
-static Token number();
 static Token identifier();
 static TokenType identifierType();
 static TokenType checkKeyword(int start, int length, const char* rest, TokenType type);
-static char advance();
 static char peek();
 static char peekNext();
 static void skipWhiteSpace();
