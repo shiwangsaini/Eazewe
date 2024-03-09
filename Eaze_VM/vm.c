@@ -7,9 +7,6 @@
 #include "compiler.h"
 #include "vm.h"
 
-// VM struct obj
-VM vm;
-
 // initialize VM
 void initVM() {
 	resetStack();

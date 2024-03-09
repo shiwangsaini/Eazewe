@@ -29,16 +29,17 @@ typedef enum {
 	INTERPRET_UNEXPECTED_ERROR
 } InterpretResult;
 
+// VM obj
+extern VM vm;
+
 // VM functions
 void initVM();
 void freeVM();
 
-//
+// Scanning on Demand vm-interpret-h
 InterpretResult interpret(const char* source);
-static InterpretResult run();
 
 // Stack functions
-static void resetStack();
 void push(Value value);
 Value pop();
 
