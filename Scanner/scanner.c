@@ -21,7 +21,7 @@ void initScanner(const char* source) {
 	scanner.line = 1;
 }
 
-// scan and provide apropriate tokentype
+// scan and provide appropriate token type
 Token scanToken() {
 	skipWhiteSpace();
 	scanner.start = scanner.current;
@@ -220,7 +220,7 @@ static void skipWhiteSpace() {
 			break;
 		case '/':
 			if (peekNext() == '/') {
-				// comment goes untile the end of line
+				// comment goes until the end of line
 				while (peek() != '\n' && !isAtEnd()) advance();
 			}
 			else return;

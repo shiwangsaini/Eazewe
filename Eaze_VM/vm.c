@@ -23,10 +23,23 @@ void freeVM() {
 
 // store executed chunks in VM
 InterpretResult interpret(const char* source) {
-	compile(source);
+	Chunk chunk;
+	initChunk(&chunk);
 
-	// internal helper runs the bytecode instruction
-	return INTERPRET_OK;
+	// if compile errors encounter
+	if (!compile(source, &chunk)) {		// returns true if compile false
+		freeChunk(&chunk);
+		return INTERPRET_COMPILE_ERROR;
+	}
+
+	vm.chunk = &chunk;
+	vm.ip = vm.chunk->code;
+
+	InterpretResult result = run();
+
+	// when VM finish free the chunk
+	freeChunk(&chunk);
+	return result;
 }
 
 // keep track of next instruction and provide appropiate responds to them
