@@ -29,8 +29,6 @@ typedef enum {
 	INTERPRET_UNEXPECTED_ERROR
 } InterpretResult;
 
-extern VM vm;
-
 // VM functions
 void initVM();
 void freeVM();

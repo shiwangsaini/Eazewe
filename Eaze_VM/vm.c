@@ -7,6 +7,8 @@
 #include "compiler.h"
 #include "vm.h"
 
+VM vm;
+
 // initialize VM
 void initVM() {
 	resetStack();

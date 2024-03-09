@@ -5,6 +5,9 @@
 #include "common.h"
 #include "scanner.h"
 
+static Token number();
+static char advance();
+
 //
 typedef struct {
 	const char* start;		// beginning of current lexeme
@@ -165,8 +168,8 @@ static TokenType identifierType() {
 		if (scanner.current - scanner.start > 1) {
 			switch (scanner.start[1])
 			{
-			case 'h': return checkKyword(2, 2, "is", TOKEN_THIS);
-			case 'r': return checkKyword(2, 2, "ue", TOKEN_TRUE);
+			case 'h': return checkKeyword(2, 2, "is", TOKEN_THIS);
+			case 'r': return checkKeyword(2, 2, "ue", TOKEN_TRUE);
 			}
 		}
 		break;
