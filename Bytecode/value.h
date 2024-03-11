@@ -8,8 +8,39 @@
 
 #include "common.h"
 
+// Value or datatypes
+typedef enum {
+	VAL_BOOL,
+	VAL_NIL,
+	VAL_NUMBER,
+} ValueType;
+
+// Datatypes as Value
+typedef struct {
+	ValueType type;			// 4 byte for type
+	// 4 byte padding
+	union {					// 1 byte for bool and 7 bytes for double
+		bool boolean;
+		double number;
+	} as;
+} Value;		// total of 16 bytes
+
+// These macros return true if the value has that type
+#define IS_BOOL(vlaue)			((value).type == VAL_BOOL)
+#define IS_NIL(vlaue)			((value).type == VAL_BOOL)
+#define IS_NUMBER(vlaue)		((value).type == VAL_BOOL)
+// Given a Value of the right type, they
+// unwrap it and return the corresponding raw C value
+#define AS_BOOL(Value)		((value).as.boolean)
+#define AS_NUMBER(Value)	((value).as.number)
+// takes a C value of the appropriate type and produces a Value
+// that has the correct type tag and contains the underlying value
+#define BOOL_VAL(value)		((Value) {VAL_BOOL, {.boolean = value}})
+#define NIL_VAL				((Value) {VAL_NIL, {.number = 0}})
+#define NUMBER_VAL(value)	((Value) {VAL_NUMBER ,{.number = value}})
+
 // D.T double = Value
-typedef double Value;
+//typedef double Value;
 
 // dynamic array of value
 typedef struct {

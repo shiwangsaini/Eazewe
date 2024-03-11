@@ -41,5 +41,7 @@ static InterpretResult run();
 static void resetStack();
 void push(Value value);
 Value pop();
+static Value peek(int distance);
+static void runtimeError(const char* format, ...);
 
 #endif // !Eaze_vm_h

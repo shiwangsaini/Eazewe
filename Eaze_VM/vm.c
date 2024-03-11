@@ -1,6 +1,7 @@
 // Implement vm
 
 #include <stdio.h>
+#include <stdarg.h>
 
 #include "common.h"
 #include "debug.h"
@@ -22,12 +23,14 @@ void freeVM() {
 
 // store executed chunks in VM
 InterpretResult interpret(const char* source) {
+	printf("in interpret\n");
 	Chunk chunk;
 	initChunk(&chunk);
 
 	// if compile errors encounter
 	if (!compile(source, &chunk)) {		// returns true if compile false
 		freeChunk(&chunk);
+		printf("interpret !compiled");
 		return INTERPRET_COMPILE_ERROR;
 	}
 
@@ -50,11 +53,15 @@ InterpretResult run() {
 #define READ_CONSTANT() (vm.chunk->constant.values[READ_BYTE()])
 
 //
-#define BINARY_OP(op)\
+#define BINARY_OP(valueType, op)\
 	do { \
-		double b = pop(); \
-		double a = pop(); \
-		push(a op b); \
+		if(!IS_NUMBER(peek(0)) || !IS_NUMBER(peek(1))) { \
+			runtimeError("Operands must be numbers."); \
+			return INTERPRET_RUNTIME_ERROR; \
+		} \
+		double b = AS_NUMBER(pop()); \
+		double a = AS_NUMBER(pop()); \
+		push(valueType(a op b)); \
 	} while (false)
 
 	// give response
@@ -81,11 +88,19 @@ InterpretResult run() {
 			push(constant);
 			break;
 		}
-		case OP_ADD:		BINARY_OP(+); break;
-		case OP_SUBTRACT:	BINARY_OP(-); break;
-		case OP_MULTIPY:	BINARY_OP(*); break;
-		case OP_DIVIDE:		BINARY_OP(/); break;
-		case OP_NEGATE:		push(-pop()); break;
+		case OP_ADD:		BINARY_OP(NUMBER_VAL, +); break;
+		case OP_SUBTRACT:	BINARY_OP(NUMBER_VAL, -); break;
+		case OP_MULTIPY:	BINARY_OP(NUMBER_VAL, *); break;
+		case OP_DIVIDE:		BINARY_OP(NUMBER_VAL, /); break;
+		case OP_NEGATE:
+			if(!IS_NUMBER(peek(0))) {	// if its a number
+				runtimeError("Operand must be a number.");
+				return INTERPRET_RUNTIME_ERROR;
+			}
+			//else
+			push(NUMBER_VAL(-AS_NUMBER(pop())));
+			break;
+
 		case OP_RETURN: {
 			printValue(pop());
 			printf("\n");
@@ -119,4 +134,26 @@ void push(Value value) {
 Value pop() {
 	vm.stackTop--;			// move pointer back
 	return *vm.stackTop;	// then return pointer to new recent stack top
+}
+
+// report runtime errors during the execution of the virtual machine (VM)
+static void runtimeError(const char* format, ...) {
+	va_list args;
+	va_start(args, format);
+	vfprintf(stderr, format, args);	// prints the formatted output to the stderr stream 
+									// using the format string format and the variable arguments in args
+	va_end(args);
+	fputs("\n", stderr);		//ensure the error message is terminated with a newline
+
+	size_t instruction = vm.ip - vm.chunk->code - 1;
+	int line = vm.chunk->lines[instruction];
+	fprintf(stderr, "[line %d] in script\n", line);		//where the error occurred
+
+	resetStack();
+}
+
+// access the value at given distance 
+// how far down from the top of the stack to look 0 is top 1 is down
+static Value peek(int distance) {
+	return vm.stackTop[-1 - distance];
 }
