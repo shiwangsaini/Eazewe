@@ -10,6 +10,8 @@
 
 VM vm;
 
+static Value peek(int distance);
+
 // initialize VM
 void initVM() {
 	resetStack();
@@ -88,10 +90,14 @@ InterpretResult run() {
 			push(constant);
 			break;
 		}
+		case OP_NIL:		push(NIL_VAL); break;
+		case OP_TRUE:		push(BOOL_VAL(true)); break;
+		case OP_FALSE:		push(BOOL_VAL(false)); break;
 		case OP_ADD:		BINARY_OP(NUMBER_VAL, +); break;
 		case OP_SUBTRACT:	BINARY_OP(NUMBER_VAL, -); break;
 		case OP_MULTIPY:	BINARY_OP(NUMBER_VAL, *); break;
 		case OP_DIVIDE:		BINARY_OP(NUMBER_VAL, /); break;
+		case OP_NOT:		push(BOOL_VAL(isFalsey(pop()))); break;
 		case OP_NEGATE:
 			if(!IS_NUMBER(peek(0))) {	// if its a number
 				runtimeError("Operand must be a number.");
@@ -156,4 +162,10 @@ static void runtimeError(const char* format, ...) {
 // how far down from the top of the stack to look 0 is top 1 is down
 static Value peek(int distance) {
 	return vm.stackTop[-1 - distance];
+}
+
+// nil and false are falsey and every other value
+// behaves like true
+static bool isFalsey(Value value) {
+	return IS_NIL(value) || (IS_BOOL(value) && !AS_BOOL(value));
 }

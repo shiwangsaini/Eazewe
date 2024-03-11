@@ -26,13 +26,13 @@ typedef struct {
 } Value;		// total of 16 bytes
 
 // These macros return true if the value has that type
-#define IS_BOOL(vlaue)			((value).type == VAL_BOOL)
-#define IS_NIL(vlaue)			((value).type == VAL_BOOL)
-#define IS_NUMBER(vlaue)		((value).type == VAL_BOOL)
+#define IS_BOOL(value)			((value).type == VAL_BOOL)
+#define IS_NIL(value)			((value).type == VAL_BOOL)
+#define IS_NUMBER(value)		((value).type == VAL_BOOL)
 // Given a Value of the right type, they
 // unwrap it and return the corresponding raw C value
-#define AS_BOOL(Value)		((value).as.boolean)
-#define AS_NUMBER(Value)	((value).as.number)
+#define AS_BOOL(value)		((value).as.boolean)
+#define AS_NUMBER(value)	((value).as.number)
 // takes a C value of the appropriate type and produces a Value
 // that has the correct type tag and contains the underlying value
 #define BOOL_VAL(value)		((Value) {VAL_BOOL, {.boolean = value}})

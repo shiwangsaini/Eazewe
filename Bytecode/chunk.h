@@ -12,10 +12,14 @@
 // Operation code
 typedef enum {
 	OP_CONSTANT,	// value index tell where the value is
+	OP_NIL,
+	OP_TRUE,
+	OP_FALSE,
 	OP_ADD,
 	OP_SUBTRACT,
 	OP_MULTIPY,
 	OP_DIVIDE,
+	OP_NOT,
 	OP_NEGATE,		// make value - negative
 	OP_RETURN,		// return op
 } Op_Code;	// defined as Op_code
