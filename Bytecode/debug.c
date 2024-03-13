@@ -29,11 +29,17 @@ void disassembleChunk(Chunk* chunk, const char* name) {
     case OP_CONSTANT:
         return constantInstruction("OP_CONSTANT__ ", chunk, offset);
     case OP_NIL:
-        return simpleInstruction("OP_NIL", offset);
+        return simpleInstruction("OP_NIL__", offset);
     case OP_TRUE:
-        return simpleInstruction("OP_TRUE", offset);
+        return simpleInstruction("OP_TRUE__", offset);
     case OP_FALSE:
-        return simpleInstruction("OP_FALSE", offset);
+        return simpleInstruction("OP_FALSE__", offset);
+    case OP_EQUAL:
+        return simpleInstruction("OP_EQUAL__", offset);
+    case OP_GREATER:
+        return simpleInstruction("OP_GREATER__", offset);
+    case OP_LESS:
+        return simpleInstruction("OP_LESS__", offset);
     case OP_ADD:
         return simpleInstruction("OP_ADD__", offset);
     case OP_SUBTRACT:
@@ -42,6 +48,8 @@ void disassembleChunk(Chunk* chunk, const char* name) {
         return simpleInstruction("OP_MULTIPY__", offset);
     case OP_DIVIDE:
         return simpleInstruction("OP_DIVIDE__", offset);
+    case OP_NOT:
+        return simpleInstruction("OP_NOT__", offset);
     case OP_NEGATE:
         return simpleInstruction("OP_NEGATE__", offset);
     case OP_RETURN:

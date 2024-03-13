@@ -101,6 +101,7 @@ static void advance() {
 
 		errorAtCurrent(parser.current.start);
 	}
+	printf("in advance break\n");
 }
 
 // validates that the token has an expected type
@@ -146,6 +147,8 @@ static void emitConstant(Value value) {
 
 // end compile with OP_RETURN
 static void endCompiler() {
+	printf("in end compile\n");
+
 	emitReturn();
 #ifdef DEBUG_PRINT_CODE
 	if (!parser.had_Error) {
@@ -172,10 +175,16 @@ static void binary() {
 	// Emit the operator instruction
 	switch (op_Type)
 	{
-	case TOKEN_PLUSE:		emitByte(OP_ADD); break;
-	case TOKEN_MINUS:		emitByte(OP_SUBTRACT); break;
-	case TOKEN_STAR:		emitByte(OP_MULTIPY); break;
-	case TOKEN_SLASH:		emitByte(OP_DIVIDE); break;
+	case TOKEN_BANG_EQUAL:		emitByte(OP_EQUAL, OP_NOT); break;
+	case TOKEN_EQUAL_EQUAL:		emitByte(OP_EQUAL); break;
+	case TOKEN_GREATER:			emitByte(OP_GREATER); break;
+	case TOKEN_GREATER_EQUAL:	emitByte(OP_LESS, OP_NOT); break;
+	case TOKEN_LESS:			emitByte(OP_LESS); break;
+	case TOKEN_LESS_EQUAL:		emitByte(OP_GREATER, OP_NOT); break;
+	case TOKEN_PLUSE:			emitByte(OP_ADD); break;
+	case TOKEN_MINUS:			emitByte(OP_SUBTRACT); break;
+	case TOKEN_STAR:			emitByte(OP_MULTIPY); break;
+	case TOKEN_SLASH:			emitByte(OP_DIVIDE); break;
 	default:
 		return; // Unreachable
 	}
@@ -227,7 +236,7 @@ static void unary() {
 // Parser rule Table
 ParseRule rules[] = {
 
-  //[TOKEN_TYPE]			= {fixes,		function,	prec_level}
+  //[TOKEN_TYPE]			= {prefixes		post,	prec_level}
 	[TOKEN_LEFT_PAREN]		= {grouping,	NULL,	PREC_NONE},
 	[TOKEN_RIGHT_PAREN]		= {NULL,		NULL,	PREC_NONE},
 	[TOKEN_LEFT_BRACE]		= {NULL,		NULL,	PREC_NONE},
@@ -240,13 +249,13 @@ ParseRule rules[] = {
 	[TOKEN_SLASH]			= {NULL,		binary,	PREC_FACTOR},
 	[TOKEN_STAR]			= {NULL,		binary,	PREC_FACTOR},
 	[TOKEN_BANG]			= {unary,		NULL,	PREC_NONE},
-	[TOKEN_BANG_EQUAL]		= {NULL,		NULL,	PREC_NONE},
+	[TOKEN_BANG_EQUAL]		= {NULL,		binary,	PREC_EQUALITY},
 	[TOKEN_EQUAL]			= {NULL,		NULL,	PREC_NONE},
-	[TOKEN_EQUAL_EQUAL]		= {NULL,		NULL,	PREC_NONE},
-	[TOKEN_GREATER]			= {NULL,		NULL,	PREC_NONE},
-	[TOKEN_GREATER_EQUAL]	= {NULL,		NULL,	PREC_NONE},
-	[TOKEN_LESS]			= {NULL,		NULL,	PREC_NONE},
-	[TOKEN_LESS_EQUAL]		= {NULL,		NULL,	PREC_NONE},
+	[TOKEN_EQUAL_EQUAL]		= {NULL,		binary,	PREC_EQUALITY},
+	[TOKEN_GREATER]			= {NULL,		binary,	PREC_COMPARISON},
+	[TOKEN_GREATER_EQUAL]	= {NULL,		binary,	PREC_COMPARISON},
+	[TOKEN_LESS]			= {NULL,		binary,	PREC_COMPARISON},
+	[TOKEN_LESS_EQUAL]		= {NULL,		binary,	PREC_COMPARISON},
 	[TOKEN_IDENTIFIER]		= {NULL,		NULL,	PREC_NONE},
 	[TOKEN_STRING]			= {NULL,		NULL,	PREC_NONE},
 	[TOKEN_NUMBER]			= {number,		NULL,	PREC_NONE}, 
@@ -296,11 +305,15 @@ static ParseRule* getRule(TokenType type) {
 
 // handle expressions(123, -123, +, - etc.) in compiler
 static void expression() {
+	printf("in expression\n");
+
 	parsePrecedence(PREC_ASSIGNMENT);
 }
 
 // compile the source code and init the scanner
 bool compile(const char* source, Chunk* chunk) {
+	printf("in compile\n");
+
 	initScanner(source);
 	compiling_Chunk = chunk;
 

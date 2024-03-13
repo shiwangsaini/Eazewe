@@ -10,7 +10,10 @@
 
 VM vm;
 
+//
+static void runtimeError(const char* format, ...);
 static Value peek(int distance);
+static bool isFalsey(Value value);
 
 // initialize VM
 void initVM() {
@@ -25,7 +28,6 @@ void freeVM() {
 
 // store executed chunks in VM
 InterpretResult interpret(const char* source) {
-	printf("in interpret\n");
 	Chunk chunk;
 	initChunk(&chunk);
 
@@ -48,7 +50,7 @@ InterpretResult interpret(const char* source) {
 
 // keep track of next instruction and provide appropiate responds to them
 InterpretResult run() {
-
+	printf("in run INTRES\n");
 // deref the ip and increment it
 #define READ_BYTE() (*vm.ip++)
 // read next byte from byte code
@@ -93,6 +95,15 @@ InterpretResult run() {
 		case OP_NIL:		push(NIL_VAL); break;
 		case OP_TRUE:		push(BOOL_VAL(true)); break;
 		case OP_FALSE:		push(BOOL_VAL(false)); break;
+
+		case OP_EQUAL: {
+			Value b = pop();
+			Value a = pop();
+			push(BOOL_VAL(valuesEqual(a, b)));
+			break;
+		}
+		case OP_GREATER:	BINARY_OP(BOOL_VAL, >); break;
+		case OP_LESS:		BINARY_OP(BOOL_VAL, <); break;
 		case OP_ADD:		BINARY_OP(NUMBER_VAL, +); break;
 		case OP_SUBTRACT:	BINARY_OP(NUMBER_VAL, -); break;
 		case OP_MULTIPY:	BINARY_OP(NUMBER_VAL, *); break;

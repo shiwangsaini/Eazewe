@@ -43,3 +43,18 @@ void printValue(Value value) {
 	case VAL_NUMBER:		printf("%g", AS_NUMBER(value)); break;
 	}
 }
+
+// Checks every equal comparision
+bool valuesEqual(Value a, Value b) {
+	if (a.type != b.type)		// if not equal types
+		return false;
+	//else
+	switch (a.type)				// in which way its equal, is it a bool? or ?
+	{
+	case VAL_BOOL:		return AS_BOOL(a) == AS_BOOL(b);
+	case VAL_NIL:		return true;
+	case VAL_NUMBER:	return AS_NUMBER(a) == AS_NUMBER(b);
+	default:
+		return false; // Unreachable.
+	}
+}

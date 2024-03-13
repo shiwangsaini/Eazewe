@@ -41,7 +41,5 @@ static InterpretResult run();
 static void resetStack();
 void push(Value value);
 Value pop();
-static void runtimeError(const char* format, ...);
-static bool isFalsey(Value value);
 
 #endif // !Eaze_vm_h

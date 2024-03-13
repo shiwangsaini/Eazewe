@@ -19,6 +19,8 @@ Scanner scanner;
 
 // init the scanner fields
 void initScanner(const char* source) {
+	printf("in init scanner\n");
+
 	scanner.start = source;
 	scanner.current = source;
 	scanner.line = 1;
@@ -26,6 +28,7 @@ void initScanner(const char* source) {
 
 // scan and provide appropriate token type
 Token scanToken() {
+
 	skipWhiteSpace();
 	scanner.start = scanner.current;
 
@@ -218,10 +221,14 @@ static void skipWhiteSpace() {
 			advance();
 			break;
 		case '\n':
+			printf("in /t\n");
+
 			scanner.line++;
 			advance();
 			break;
 		case '/':
+			printf("in /\n");
+
 			if (peekNext() == '/') {
 				// comment goes until the end of line
 				while (peek() != '\n' && !isAtEnd()) advance();
