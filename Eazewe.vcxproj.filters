@@ -39,6 +39,9 @@
     <ClCompile Include="Scanner\scanner.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Eaze_VM\Object.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bytecode\common.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scanner\scanner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Eaze_VM\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

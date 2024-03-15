@@ -134,6 +134,7 @@
     <ClCompile Include="Bytecode\memory.c" />
     <ClCompile Include="Bytecode\value.c" />
     <ClCompile Include="Compiler\compiler.c" />
+    <ClCompile Include="Eaze_VM\Object.c" />
     <ClCompile Include="Eaze_VM\vm.c" />
     <ClCompile Include="Scanner\scanner.c" />
   </ItemGroup>
@@ -145,6 +146,7 @@
     <ClInclude Include="Bytecode\common.h" />
     <ClInclude Include="Compiler\compiler.h" />
     <ClInclude Include="Eaze_VM\vm.h" />
+    <ClInclude Include="Eaze_VM\Object.h" />
     <ClInclude Include="Scanner\scanner.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -5,6 +5,7 @@
 #define Eaze_compiler_h
 
 #include "vm.h"
+#include "Object.h"
 
 // compiler function
 bool compile(const char* source, Chunk* chunk);

@@ -7,6 +7,10 @@
 
 #include "common.h"
 
+// allocate a new array on the heap
+#define ALLOCATE(type, count) \
+	(type*)reallocate(NULL, 0, sizeof(type) * (count))
+
 // grow the capacity by 2 if cap < 8
 #define GROW_CAPACITY(capacity) \
 	(capacity < 8 ? 8: (capacity * 2))

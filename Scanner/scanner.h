@@ -75,7 +75,6 @@ static bool isAlpha(char c);
 static bool match(char expected);
 static Token makeToken(TokenType type);
 static Token errorToken(const char* message);
-static Token string();
 static Token identifier();
 static TokenType identifierType();
 static TokenType checkKeyword(int start, int length, const char* rest, TokenType type);

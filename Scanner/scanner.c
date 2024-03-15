@@ -5,10 +5,11 @@
 #include "common.h"
 #include "scanner.h"
 
+static Token string();
 static Token number();
 static char advance();
 
-//
+// structure of scanner
 typedef struct {
 	const char* start;		// beginning of current lexeme
 	const char* current;	// current char being looked at
