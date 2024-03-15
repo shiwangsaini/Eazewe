@@ -35,16 +35,15 @@ struct ObjString {
 };
 
 
-// copy string in new obj
+//
+ObjString* takeString(char* chars, int length);
 ObjString* copyString(const char* chars, int length);
+void printObject(Value value);
 
 // will tell us when it’s safe to cast a value to a
 // specific object type
 static inline bool isObjType(Value value, ObjType type) {
 	return IS_OBJ(value) && AS_OBJ(value)->type == type;
 }
-
-//
-static ObjString* allocateString(char* chars, int length);
 
 #endif // !Eaze_Object_h
