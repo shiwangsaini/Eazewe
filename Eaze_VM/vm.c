@@ -22,11 +22,13 @@ static bool isFalsey(Value value);
 // initialize VM
 void initVM() {
 	resetStack();
+	vm.objects = NULL;
 	printf("initialized vm\n");
 }
 
 // free VM
 void freeVM() {
+	freeObjects();
 	printf("freed vm\n");
 }
 

@@ -19,6 +19,7 @@ typedef struct {
 	// A value stack
 	Value stack[MAX_STACK];
 	Value* stackTop;	// stack pointer points to biggening of the array
+	Obj* objects;		// points to head node in GC
 } VM;
 
 // VM responds
@@ -28,6 +29,9 @@ typedef enum {
 	INTERPRET_RUNTIME_ERROR,
 	INTERPRET_UNEXPECTED_ERROR
 } InterpretResult;
+
+//
+extern VM vm;
 
 // VM functions
 void initVM();

@@ -13,7 +13,7 @@ static ObjString* allocateString(char* chars, int length);
 #define ALLOCATE_OBJ(type, ObjType) \
     (type*)allocateObject(sizeof(type), ObjType)
 
-//
+// copy of the characters on the heap that the ObjString can own
 ObjString* takeString(char* chars, int length) {
     return allocateString(chars, length);
 }
@@ -39,6 +39,8 @@ void printObject(Value value) {
 static Obj* allocateObject(size_t size, ObjType type) {
     Obj* object = (Obj*)reallocate(NULL, 0, size);
     object->type = type;
+    object->next = vm.objects;
+    vm.objects = object;
     return object;
 }
 

@@ -6,6 +6,7 @@
 #define Eaze_memory_h
 
 #include "common.h"
+#include "object.h"
 
 // allocate a new array on the heap
 #define ALLOCATE(type, count) \
@@ -24,7 +25,10 @@
 #define FREE_ARRAY(type, pointer, old_count) \
 	reallocate(pointer, sizeof(type) * (old_count), 0)
 
+// free and reallocate pointer with new size of 0
+#define FREE(type, pointer) reallocate(pointer, sizeof(type), 0);
+
 void* reallocate(void* pointer, size_t old_size, size_t	new_size);
-		
+void freeObjects();
 
 #endif // !Eaze_memory_h
