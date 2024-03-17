@@ -11,7 +11,7 @@
 static void repl() {
     char line[1024];
     for (;;) {
-        printf("> ");
+        printf("code here please > ");
 
         if (!fgets(line, sizeof(line), stdin)) {
             printf("\n");
@@ -75,7 +75,7 @@ int main(int argc, const char* argv[]) {
         runFile(argv[1]);
     }
     else {
-        fprintf(stderr, "Usage: clox [path]\n");
+        fprintf(stderr, "Usage: EazeWe [path]\n");
         exit(64);
     }
 

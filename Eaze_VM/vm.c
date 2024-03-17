@@ -23,13 +23,14 @@ static bool isFalsey(Value value);
 void initVM() {
 	resetStack();
 	vm.objects = NULL;
-	printf("initialized vm\n");
+	printf("Started EazeWe Virtual Machine > for collage Project [CH.B. Polytechnic].\n");
+	printf("In console please write one line of code.\n");
 }
 
 // free VM
 void freeVM() {
 	freeObjects();
-	printf("freed vm\n");
+	printf("EazeWe Ended.\n");
 }
 
 // store executed chunks in VM
